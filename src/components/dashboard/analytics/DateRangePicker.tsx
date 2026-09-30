@@ -83,7 +83,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
         <Button
           variant="outline"
           className={cn(
-            "justify-between text-white min-w-[280px] bg-slate-800/50 border-slate-700",
+            "justify-between text-white min-w-72 bg-slate-800/50 border-slate-700",
             "hover:bg-slate-800 hover:border-blue-500/30",
             "transition-all duration-300",
             !value && "",

@@ -6,6 +6,7 @@ import {
   SuggestionsList,
 } from "@/components/hotel";
 import { getHotelById, getSuggestedHotels } from "@/lib/mockData/hotels";
+import { PageContainer } from "@/components/layouts/PageContainer";
 import { useRouter } from "next/navigation";
 import { use } from "react";
 
@@ -23,7 +24,7 @@ export default function HotelDetailPage({
     <div className="min-h-screen bg-white">
       <HotelHeader />
 
-      <div className="mx-auto flex max-w-[1180px] flex-col lg:flex-row">
+      <PageContainer className="flex flex-col px-0 sm:px-0 lg:flex-row">
         <SuggestionsList
           apartments={suggestions}
           onSelect={(id) => router.push(`/rent/${id}`)}
@@ -32,7 +33,7 @@ export default function HotelDetailPage({
           apartment={apartment}
           onBook={() => router.push(`/rent/${apartment.id}/escrow/create`)}
         />
-      </div>
+      </PageContainer>
     </div>
   );
 }

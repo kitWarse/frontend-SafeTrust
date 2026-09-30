@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import type { HotelListing } from '@/@types/hotel';
-import Image from 'next/image';
-import { FaMapMarkerAlt } from 'react-icons/fa';
-import AmenityIcons from './AmenityIcons';
-import { formatListingPrice } from './formatListingPrice';
-import ImageGallery from './ImageGallery';
+import type { HotelListing } from "@/@types/hotel";
+import Image from "next/image";
+import { FaMapMarkerAlt } from "react-icons/fa";
+import AmenityIcons from "./AmenityIcons";
+import { formatListingPrice } from "./formatListingPrice";
+import ImageGallery from "./ImageGallery";
 
 interface ApartmentDetailProps {
   apartment: HotelListing;
@@ -46,7 +46,7 @@ export default function ApartmentDetail({
           </div>
         </div>
 
-        <div className="w-full rounded-[12px] lg:max-w-[210px]">
+        <div className="w-full rounded-[12px] lg:max-w-xs">
           <button
             type="button"
             onClick={onBook}
@@ -76,7 +76,7 @@ export default function ApartmentDetail({
         </div>
       </div>
 
-      <div className="mt-10 max-w-[760px]">
+      <div className="mt-10 max-w-3xl">
         <h2 className="text-[22px] font-semibold text-[#1b1b1b]">
           Apartment details
         </h2>

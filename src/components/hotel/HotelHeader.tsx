@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from "next/image";
+import Link from "next/link";
 import {
   FaBell,
   FaChevronDown,
   FaRegUserCircle,
   FaSearch,
-} from 'react-icons/fa';
+} from "react-icons/fa";
 
 export default function HotelHeader() {
   return (
     <header className="border-b border-[#e8e1da] bg-white">
-      <div className="mx-auto flex max-w-[1180px] items-center gap-4 px-5 py-5 lg:px-7">
+      <div className="mx-auto flex max-w-7xl items-center gap-4 px-5 py-5 lg:px-7">
         <Link href="/" className="flex items-center gap-3">
           <Image src="/img/logo.png" alt="SafeTrust" width={36} height={36} />
           <span className="text-[24px] font-semibold tracking-[-0.03em] text-[#202020]">
@@ -20,7 +20,7 @@ export default function HotelHeader() {
           </span>
         </Link>
 
-        <div className="mx-auto hidden w-full max-w-[430px] items-center rounded-full border border-[#d9d9d9] bg-[#f3f3f3] px-2 py-1.5 md:flex">
+        <div className="mx-auto hidden w-full max-w-md items-center rounded-full border border-[#d9d9d9] bg-[#f3f3f3] px-2 py-1.5 md:flex">
           <button
             type="button"
             className="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm text-[#2d2d2d] shadow-sm"

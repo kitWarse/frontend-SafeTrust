@@ -3,6 +3,7 @@
 import React from "react";
 import HotelDetails from "@/components/hotels/payment/HotelDetails";
 import ReservationSummary from "@/components/hotels/payment/ReservationSummary";
+import { PageContainer } from "@/components/layouts/PageContainer";
 
 const HotelPage = () => {
   const hotelData = {
@@ -26,8 +27,8 @@ const HotelPage = () => {
 
   return (
     <div className="bg-gray-100 min-h-screen">
-      <div className="w-full px-4 md:px-10 py-8 mt-10">
-        <div className="flex flex-col md:flex-row gap-8 max-w-7xl mx-auto">
+      <PageContainer className="mt-10 py-8">
+        <div className="flex flex-col-reverse gap-8 lg:flex-row">
           <div className="flex-grow">
             <div className="bg-white rounded-lg p-6 shadow-sm">
               <HotelDetails
@@ -44,7 +45,7 @@ const HotelPage = () => {
               />
             </div>
           </div>
-          <div className="w-full md:w-[400px] shrink-0">
+          <div className="w-full shrink-0 lg:w-96">
             <ReservationSummary
               hotelName={hotelData.hotelName}
               description={hotelData.description}
@@ -55,7 +56,7 @@ const HotelPage = () => {
             />
           </div>
         </div>
-      </div>
+      </PageContainer>
     </div>
   );
 };

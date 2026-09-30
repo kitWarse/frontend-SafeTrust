@@ -72,7 +72,7 @@ export default function GuestDashboard() {
   });
 
   return (
-    <div className="flex flex-col lg:flex-row w-full max-w-[1400px] mx-auto bg-white rounded-[20px] overflow-hidden border border-[#e8e1da] shadow-sm mt-6">
+    <div className="mx-auto mt-6 flex w-full max-w-screen-2xl flex-col overflow-hidden rounded-[20px] border border-[#e8e1da] bg-white shadow-sm lg:flex-row">
       {/* Sidebar */}
       <FilterSidebar
         selectedCategories={selectedCategories}

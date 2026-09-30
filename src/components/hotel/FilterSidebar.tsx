@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { HOTEL_CATEGORIES, HOTEL_LOCATIONS } from '@/lib/mockData/hotels';
-import { cn } from '@/lib/utils';
-import { formatListingPrice } from './formatListingPrice';
+import { HOTEL_CATEGORIES, HOTEL_LOCATIONS } from "@/lib/mockData/hotels";
+import { cn } from "@/lib/utils";
+import { formatListingPrice } from "./formatListingPrice";
 
 interface FilterSidebarProps {
   selectedCategories: string[];
@@ -16,16 +16,16 @@ interface FilterSidebarProps {
 }
 
 const PRICE_BARS = [
-  { id: 'bar-1', height: 10 },
-  { id: 'bar-2', height: 18 },
-  { id: 'bar-3', height: 24 },
-  { id: 'bar-4', height: 20 },
-  { id: 'bar-5', height: 28 },
-  { id: 'bar-6', height: 16 },
-  { id: 'bar-7', height: 22 },
-  { id: 'bar-8', height: 14 },
-  { id: 'bar-9', height: 10 },
-  { id: 'bar-10', height: 26 },
+  { id: "bar-1", height: 10 },
+  { id: "bar-2", height: 18 },
+  { id: "bar-3", height: 24 },
+  { id: "bar-4", height: 20 },
+  { id: "bar-5", height: 28 },
+  { id: "bar-6", height: 16 },
+  { id: "bar-7", height: 22 },
+  { id: "bar-8", height: 14 },
+  { id: "bar-9", height: 10 },
+  { id: "bar-10", height: 26 },
 ];
 
 function CheckboxRow({
@@ -64,7 +64,7 @@ export default function FilterSidebar({
   const rightPercent = ((maxPrice - 3200) / (206000 - 3200)) * 100;
 
   return (
-    <aside className="w-full border-b border-[#e8e1da] px-6 py-8 lg:w-[215px] lg:border-b-0 lg:border-r">
+    <aside className="w-full border-b border-[#e8e1da] px-6 py-8 lg:w-56 lg:border-b-0 lg:border-r">
       <section className="pb-8">
         <h2 className="mb-5 text-[15px] font-semibold text-[#1d1d1d]">
           Category

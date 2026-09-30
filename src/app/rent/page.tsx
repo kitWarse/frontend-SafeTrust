@@ -8,6 +8,7 @@ import {
   HotelHeader,
 } from "@/components/hotel";
 import { STUB_HOTELS } from "@/lib/mockData/hotels";
+import { PageContainer } from "@/components/layouts/PageContainer";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import { BsSortDownAlt } from "react-icons/bs";
@@ -81,7 +82,7 @@ export default function HotelListingPage() {
     <div className="min-h-screen bg-white text-[#1c1c1c]">
       <HotelHeader />
 
-      <div className="mx-auto flex max-w-[1180px] flex-col lg:flex-row">
+      <PageContainer className="flex flex-col px-0 sm:px-0 lg:flex-row">
         <FilterSidebar
           selectedCategories={selectedCategories}
           selectedLocations={selectedLocations}
@@ -128,7 +129,7 @@ export default function HotelListingPage() {
             />
           </div>
         </main>
-      </div>
+      </PageContainer>
     </div>
   );
 }

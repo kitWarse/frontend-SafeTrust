@@ -1,15 +1,9 @@
 "use client";
 
 import { EscrowStatusBadge } from "@/components/dashboard/EscrowStatusBadge";
+import { PageHeader } from "@/components/layouts/PageHeader";
 import { Button } from "@/components/ui/button";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { Column, ResponsiveTable } from "@/components/ui/responsive-table";
 import { PlusIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -72,21 +66,58 @@ export default function EscrowPage() {
     return escrow.status.toUpperCase() === activeFilter.toUpperCase();
   });
 
+  type Escrow = (typeof STUB_ESCROWS)[number];
+  const columns: Column<Escrow>[] = [
+    {
+      key: "id",
+      header: "ID",
+      cell: (escrow) => (
+        <span
+          className="block max-w-32 truncate font-mono text-sm"
+          title={escrow.id}
+        >
+          {escrow.id}
+        </span>
+      ),
+      hideOnMobile: true,
+    },
+    {
+      key: "property",
+      header: "Property",
+      primary: true,
+      cell: (escrow) => (
+        <span className="block truncate font-medium" title={escrow.property}>
+          {escrow.property}
+        </span>
+      ),
+    },
+    {
+      key: "amount",
+      header: "Amount",
+      cell: (escrow) => formatCurrency(escrow.amount),
+    },
+    {
+      key: "status",
+      header: "Status",
+      cell: (escrow) => <EscrowStatusBadge status={escrow.status} />,
+    },
+    { key: "created", header: "Created", cell: (escrow) => escrow.createdAt },
+  ];
+
   return (
     <div className="space-y-6 w-full">
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
-          My Escrows
-        </h1>
-        <Button
-          onClick={handleNewEscrow}
-          className="flex items-center gap-2 sm:w-auto w-fit"
-        >
-          <PlusIcon className="h-4 w-4" />
-          New Escrow
-        </Button>
-      </div>
+      <PageHeader
+        title="My Escrows"
+        actions={
+          <Button
+            onClick={handleNewEscrow}
+            className="flex items-center gap-2 sm:w-auto w-fit"
+          >
+            <PlusIcon className="h-4 w-4" />
+            New Escrow
+          </Button>
+        }
+      />
 
       {/* Filter Tabs */}
       <div className="border-b border-gray-200 overflow-hidden">
@@ -110,68 +141,22 @@ export default function EscrowPage() {
         </nav>
       </div>
 
-      {/* Table */}
-      <div className="bg-white shadow rounded-lg w-screen lg:w-full">
-        <div className="scrollbar-thin w-full ">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead className="w-[100px] min-w-[100px]">ID</TableHead>
-                <TableHead className="min-w-[200px]">Property</TableHead>
-                <TableHead className="w-[120px] min-w-[120px]">
-                  Amount
-                </TableHead>
-                <TableHead className="w-[120px] min-w-[120px]">
-                  Status
-                </TableHead>
-                <TableHead className="w-[100px] min-w-[100px] text-right">
-                  Actions
-                </TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {filteredEscrows.length === 0 ? (
-                <TableRow>
-                  <TableCell
-                    colSpan={5}
-                    className="h-24 text-center text-gray-500"
-                  >
-                    No escrows found
-                  </TableCell>
-                </TableRow>
-              ) : (
-                filteredEscrows.map((escrow) => (
-                  <TableRow key={escrow.id} className="overflow-scroll">
-                    <TableCell className="font-mono text-sm">
-                      {escrow.id.slice(0, 8)}...
-                    </TableCell>
-                    <TableCell className="font-medium min-w-[200px]">
-                      <div className="truncate" title={escrow.property}>
-                        {escrow.property}
-                      </div>
-                    </TableCell>
-                    <TableCell className="font-medium min-w-[120px]">
-                      {formatCurrency(escrow.amount)}
-                    </TableCell>
-                    <TableCell className="min-w-[120px]">
-                      <EscrowStatusBadge status={escrow.status} />
-                    </TableCell>
-                    <TableCell className="text-right min-w-[100px]">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => handleViewEscrow(escrow.id)}
-                        className="whitespace-nowrap"
-                      >
-                        View
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                ))
-              )}
-            </TableBody>
-          </Table>
-        </div>
+      <div className="w-full overflow-hidden rounded-lg bg-white shadow">
+        <ResponsiveTable
+          columns={columns}
+          rows={filteredEscrows}
+          getRowKey={(escrow) => escrow.id}
+          emptyMessage="No escrows found"
+          rowActions={(escrow) => (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => handleViewEscrow(escrow.id)}
+            >
+              View
+            </Button>
+          )}
+        />
 
         {/* Pagination */}
         <div className="px-4 sm:px-6 py-3 border-t border-gray-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">

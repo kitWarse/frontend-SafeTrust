@@ -38,7 +38,7 @@ export function ApartmentTableFilters({
 }: ApartmentTableFiltersProps) {
   return (
     <div className="flex flex-col gap-4 lg:flex-row lg:flex-wrap lg:items-end">
-      <div className="relative min-w-[200px] flex-1">
+      <div className="relative min-w-0 flex-1">
         <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
         <Input
           type="search"
@@ -57,15 +57,24 @@ export function ApartmentTableFilters({
             checked={promotedOnly}
             onCheckedChange={(v) => onPromotedOnlyChange(v === true)}
           />
-          <Label htmlFor="promoted-only" className="cursor-pointer text-sm font-normal">
+          <Label
+            htmlFor="promoted-only"
+            className="cursor-pointer text-sm font-normal"
+          >
             Promoted
           </Label>
         </div>
 
-        <div className="flex min-w-[160px] items-center gap-2">
-          <Briefcase className="h-4 w-4 shrink-0 text-muted-foreground" aria-hidden />
-          <Select value={priceRange} onValueChange={(v) => onPriceRangeChange(v as PriceRangeFilter)}>
-            <SelectTrigger className="w-[160px]" aria-label="Price range">
+        <div className="flex min-w-0 items-center gap-2">
+          <Briefcase
+            className="h-4 w-4 shrink-0 text-muted-foreground"
+            aria-hidden
+          />
+          <Select
+            value={priceRange}
+            onValueChange={(v) => onPriceRangeChange(v as PriceRangeFilter)}
+          >
+            <SelectTrigger className="w-40" aria-label="Price range">
               <SelectValue placeholder="Price range" />
             </SelectTrigger>
             <SelectContent>
@@ -77,12 +86,15 @@ export function ApartmentTableFilters({
           </Select>
         </div>
 
-        <div className="flex min-w-[140px] items-center gap-2">
+        <div className="flex min-w-0 items-center gap-2">
           <span className="text-lg" aria-hidden>
             🏷
           </span>
-          <Select value={statusFilter} onValueChange={(v) => onStatusFilterChange(v as StatusTableFilter)}>
-            <SelectTrigger className="w-[160px]" aria-label="Occupancy status">
+          <Select
+            value={statusFilter}
+            onValueChange={(v) => onStatusFilterChange(v as StatusTableFilter)}
+          >
+            <SelectTrigger className="w-40" aria-label="Occupancy status">
               <SelectValue placeholder="Status" />
             </SelectTrigger>
             <SelectContent>

@@ -1,6 +1,6 @@
 "use client";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 import { useState } from "react";
 import RoomPhotos from "@/components/rooms/RoomPhotos";
@@ -24,6 +24,8 @@ import { useRouter } from "next/navigation";
 import { NavigationHeader } from "@/components/navigation/NavigationHeader";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Share, Heart } from "lucide-react";
+import { PageContainer } from "@/components/layouts/PageContainer";
+import { PageHeader } from "@/components/layouts/PageHeader";
 
 const additionalImages = [
   "/img/room1.png",
@@ -141,7 +143,7 @@ export default function RoomPage() {
   };
 
   return (
-    <div className="container mx-auto pb-8 max-w-7xl min-h-screen bg-background">
+    <PageContainer className="min-h-screen bg-background pb-8">
       {/* Navigation/Page Header */}
       <div className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <NavigationHeader
@@ -151,9 +153,7 @@ export default function RoomPage() {
       </div>
 
       {/* Main content */}
-      <h1 className="px-4 md:px-6 text-2xl font-bold my-4 lg:mb-6">
-        Room Gallery
-      </h1>
+      <PageHeader title="Room Gallery" />
 
       {/* 1. Photo Gallery Section */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
@@ -231,6 +231,6 @@ export default function RoomPage() {
         isOpen={mobileBookingOpen}
         onClose={() => setMobileBookingOpen(false)}
       />
-    </div>
+    </PageContainer>
   );
 }

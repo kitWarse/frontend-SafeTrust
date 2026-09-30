@@ -6,6 +6,7 @@ import { useGlobalAuthenticationStore } from "@/core/store/data";
 import { SideBar } from "@/components/layouts/SideBar";
 import { Header } from "@/components/layouts/Header";
 import type { ReactNode } from "react";
+import { PageContainer } from "@/components/layouts/PageContainer";
 
 // Define public routes that don't require authentication
 const PUBLIC_ROUTES = [
@@ -18,9 +19,7 @@ const PUBLIC_ROUTES = [
 ];
 
 // Routes that match patterns (for dynamic routes)
-const PUBLIC_ROUTE_PATTERNS = [
-  /^\/dashboard\/hotel\/booking\/.+\/escrow$/,
-];
+const PUBLIC_ROUTE_PATTERNS = [/^\/dashboard\/hotel\/booking\/.+\/escrow$/];
 
 const Layout = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
@@ -35,7 +34,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
       try {
         const isPublicRoute = PUBLIC_ROUTES.some((route) => pathname === route);
         const matchesPublicPattern = PUBLIC_ROUTE_PATTERNS.some((pattern) =>
-          pattern.test(pathname)
+          pattern.test(pathname),
         );
         const isPublic = isPublicRoute || matchesPublicPattern;
 
@@ -73,7 +72,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
   // Show error state only for protected routes that failed authentication
   const isPublicRoute = PUBLIC_ROUTES.some((route) => pathname === route);
   const matchesPublicPattern = PUBLIC_ROUTE_PATTERNS.some((pattern) =>
-    pattern.test(pathname)
+    pattern.test(pathname),
   );
   const isPublic = isPublicRoute || matchesPublicPattern;
 
@@ -107,14 +106,18 @@ const Layout = ({ children }: { children: ReactNode }) => {
         <SideBar variant="permanent" notificationCount={1} />
       )}
 
-      <main className={`flex-1 transition-all duration-300 min-h-[calc(100vh-4rem)] pt-16 ${pathname !== "/dashboard/profile" ? "md:ml-16 lg:ml-48" : ""}`}>
-        <div className={`w-full h-full ${pathname !== "/dashboard/profile" ? "p-4 md:p-8 lg:p-10" : "p-4 md:p-6"}`}>
+      <main
+        className={`min-w-0 flex-1 transition-all duration-300 min-h-[calc(100vh-4rem)] pt-16 ${pathname !== "/dashboard/profile" ? "md:ml-16 lg:ml-48" : ""}`}
+      >
+        <PageContainer
+          width="wide"
+          className={`h-full min-w-0 ${pathname !== "/dashboard/profile" ? "py-4 md:py-8 lg:py-10" : "py-4 md:py-6"}`}
+        >
           {children}
-        </div>
+        </PageContainer>
       </main>
     </div>
   );
 };
-
 
 export default Layout;
